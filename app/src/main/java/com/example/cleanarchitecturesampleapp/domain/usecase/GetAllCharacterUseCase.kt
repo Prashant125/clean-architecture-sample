@@ -4,7 +4,7 @@ import com.example.cleanarchitecturesampleapp.domain.model.Characters
 import com.example.cleanarchitecturesampleapp.domain.repository.CharacterRepository
 import javax.inject.Inject
 
-class GetAllCharacterUseCase @Inject constructor(private val repository: CharacterRepository) {
+class getAllCharacterUseCase @Inject constructor(val repository: CharacterRepository) {
 
     suspend operator fun invoke() = repository.getAllCharacters()
 }

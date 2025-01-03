@@ -7,36 +7,27 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
-import com.example.cleanarchitecturesampleapp.core.common.Resources
-import com.example.cleanarchitecturesampleapp.domain.model.Characters
-import com.example.cleanarchitecturesampleapp.presentation.viewmodel.CharacterViewModel
+import androidx.compose.ui.Modifier
+import com.example.cleanarchitecturesampleapp.presentation.state.CharacterState
 
 @Composable
-fun CharacterScreen(modifier: Modifier,viewModel: CharacterViewModel) {
-
-    val uiState by viewModel.uiState.observeAsState(initial = Resources.Loading())
-
-    when(uiState) {
-        is Resources.Error -> {
-            Box(modifier = modifier.fillMaxSize()) {
-                Text(text = (uiState as Resources.Error<List<Characters>>).message.toString(), modifier = modifier.align(Alignment.Center))
-            }
+fun CharacterScreen(modifier: Modifier,characterState: CharacterState) {
+    if (characterState.errorMessage.isBlank()) {
+        Box(modifier = modifier.fillMaxSize()) {
+            Text(text = characterState.errorMessage, modifier = modifier.align(Alignment.Center))
         }
-        is Resources.Loading -> {
-            Box(modifier = modifier.fillMaxSize()) {
-                CircularProgressIndicator(modifier = modifier.align(Alignment.Center))
-            }
+    } else if (characterState.loading) {
+        Box(modifier = modifier.fillMaxSize()) {
+            CircularProgressIndicator(modifier = modifier.align(Alignment.Center))
         }
-        is Resources.Success -> {
-            LazyColumn {
-                val characters =  (uiState as Resources.Success).data ?: emptyList()
-                items(characters) {
-                    CharacterItem(modifier = modifier,character = it)
-                }
+    }
+
+    if (characterState.characters?.isNotEmpty() == true) {
+        LazyColumn {
+            val characters = characterState.characters
+            items(characters) {
+                CharacterItem(modifier = modifier, character = it)
             }
         }
     }
