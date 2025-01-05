@@ -10,6 +10,7 @@ activityCompose = "1.9.3"
 composeBom = "2024.04.01"
 runtimeLivedata = "1.7.5"
 coilVersion = "2.4.0"
+navigationTesting = "2.8.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -36,14 +37,19 @@ dagger-hilt = { module = "com.google.dagger:hilt-android", version = "2.50" }
 dagger-kapt = { module = 'com.google.dagger:hilt-android-compiler', version = "2.50" }
 hilt-compose-navigation = { module = "androidx.hilt:hilt-navigation-compose", version = "1.2.0" }
 
-dagger-hilt-testing = { module = "com.google.dagger:hilt-android-testing", version = "2.50" }
-
 #LiveData
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 androidx-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version = "2.6.1" }
 
 #Coil
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coilVersion" }
+
+#test
+mockk = { module = "io.mockk:mockk", version = "1.13.3" }
+kotlinTest = { module = "org.jetbrains.kotlin:kotlin-test", version = "1.8.10" }
+dagger-hilt-testing = { module = "com.google.dagger:hilt-android-testing", version = "2.50" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version = "1.9.0" }
+androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigationTesting" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

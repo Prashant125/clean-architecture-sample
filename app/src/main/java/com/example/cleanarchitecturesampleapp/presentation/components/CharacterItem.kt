@@ -58,5 +58,4 @@ fun CharacterItem(modifier: Modifier, character: Characters) {
         }
 
     }
-
 }

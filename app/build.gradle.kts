@@ -18,7 +18,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.google.dagger.hilt.android.testing.HiltTestRunner"
     }
 
     buildTypes {
@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.testing)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -75,4 +76,14 @@ dependencies {
 
     //coil
     implementation(libs.coil)
+
+    //test
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinTest)
+    kaptAndroidTest(libs.dagger.kapt)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.dagger.hilt.testing)
+    androidTestImplementation(libs.androidx.navigation.testing)
+    androidTestImplementation(libs.hilt.compose.navigation)
+
 }

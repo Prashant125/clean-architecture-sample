@@ -20,7 +20,7 @@ class CharacterViewModel @Inject constructor(private val characterUseCase: GetAl
         fetchAllCharacters()
     }
 
-    private fun fetchAllCharacters() {
+    fun fetchAllCharacters() {
         _uiState.value = CharacterState().copy(loading = true)
         viewModelScope.launch {
             try {
